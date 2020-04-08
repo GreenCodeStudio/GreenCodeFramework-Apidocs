@@ -14,7 +14,7 @@ class ApiDocs extends PageStandardController
 
     function definition()
     {
-        $obj = new (\ApiDocs\ApiDocs())->GetDefinition();
+        $obj = (new \ApiDocs\ApiDocs())->GetDefinition();
         $obj['info']['title'] = $this->getPageHeader();
         echo json_encode($obj);
         exit;
