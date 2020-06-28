@@ -4,7 +4,7 @@
 namespace ApiDocs;
 
 
-use Core\Router;
+use Core\Routing\RouterOld;
 
 class ApiDocs
 {
@@ -12,7 +12,7 @@ class ApiDocs
     {
         $obj = ['openapi' => '3.0.0'];
         $obj['servers'][]['url'] = '/api';
-        $controllers = Router::listControllers('Api');
+        $controllers = RouterOld::listControllers('Api');
         foreach ($controllers as $controller) {
             //dump($controller);
             foreach ($controller->methods as $method) {
