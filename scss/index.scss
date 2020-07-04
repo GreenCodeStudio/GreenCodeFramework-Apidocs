@@ -2,8 +2,13 @@
 
     @import url("~swagger-ui/dist/swagger-ui.css");
 
+
     .information-container {
-         @extend section.card;
+        @extend section.card;
     }
 
+    @media (prefers-color-scheme: dark) {
+        --background: #fff;
+        background: #fff;
+    }
 }
