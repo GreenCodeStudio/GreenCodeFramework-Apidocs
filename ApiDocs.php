@@ -4,7 +4,6 @@
 namespace ApiDocs;
 
 
-
 use Core\Routing\ApiRouter;
 
 class ApiDocs
@@ -19,10 +18,7 @@ class ApiDocs
             foreach ($controller->methods as $method) {
                 foreach ($method->annotations as $annotation) {
                     if ($annotation instanceof \ApiEndpointAnnotation) {
-
-                        $obj['paths']['/'.trim($annotation->url, ' /')][$annotation->type] = ['summary' => $method->name, 'responses' => [
-
-                        ]];
+                        $obj['paths']['/' . trim($annotation->url, ' /')][$annotation->type] = ['summary' => $method->name, 'responses' => $annotation->responses, 'description' => $annotation->description];
 
                     }
                 }
