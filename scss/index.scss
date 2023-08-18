@@ -4,7 +4,7 @@
 
 
     .information-container {
-        @extend section.card;
+        @extend .card;
     }
 
     @media (prefers-color-scheme: dark) {
