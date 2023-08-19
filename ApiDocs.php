@@ -15,7 +15,7 @@ class ApiDocs
         $obj['security'][] = ["api_key"];
         $obj['components']['securitySchemes']['apiKey'] = [
             "type" => "http",
-            "scheme"=>"Bearer"
+            "scheme" => "Bearer"
         ];
         $controllers = (new ApiRouter())->listControllers();
         foreach ($controllers as $controller) {
@@ -23,8 +23,10 @@ class ApiDocs
             foreach ($controller->methods as $method) {
                 foreach ($method->annotations as $annotation) {
                     if ($annotation instanceof \ApiEndpointAnnotation) {
-                        $obj['paths']['/'.trim($annotation->url, ' /')][$annotation->type] = ['security' =>$annotation->allowNotLogged?[]:[['apiKey'=>[]]], 'summary' => $method->name, 'responses' => $annotation->responses, 'parameters' => $annotation->parameters, 'description' => $annotation->description, 'tags' => $annotation->tags ?? []];
-
+                        $obj['paths']['/'.trim($annotation->url, ' /')][$annotation->type] = ['security' => $annotation->allowNotLogged ? [] : [['apiKey' => []]], 'summary' => $method->name, 'responses' => $annotation->responses, 'parameters' => $annotation->parameters, 'description' => $annotation->description, 'tags' => $annotation->tags ?? []];
+                        if ($annotation->requestBody) {
+                            $obj['paths']['/'.trim($annotation->url, ' /')][$annotation->type]['requestBody'] = $annotation->requestBody;
+                        }
                     }
                 }
             }
