@@ -6,7 +6,6 @@ use Common\PageStandardController;
 
 class ApiDocs extends PageStandardController
 {
-
     function index()
     {
         $this->addView('ApiDocs', 'start');
