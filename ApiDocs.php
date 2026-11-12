@@ -22,7 +22,7 @@ class ApiDocs
             //dump($controller);
             foreach ($controller->methods as $method) {
                 foreach ($method->annotations as $annotation) {
-                    if ($annotation instanceof \ApiEndpointAnnotation) {
+                    if ($annotation instanceof \ApiEndpointAnnotation || $annotation instanceof \ApiEndpoint) {
                         $obj['paths']['/'.trim($annotation->url, ' /')][$annotation->type] = ['security' => $annotation->allowNotLogged ? [] : [['apiKey' => []]], 'summary' => $method->name, 'responses' => $annotation->responses, 'parameters' => $annotation->parameters, 'description' => $annotation->description, 'tags' => $annotation->tags ?? []];
                         if ($annotation->requestBody) {
                             $obj['paths']['/'.trim($annotation->url, ' /')][$annotation->type]['requestBody'] = $annotation->requestBody;
